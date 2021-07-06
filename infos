@@ -1,0 +1,4 @@
+    env:
+      BROKER_USERNAME: ((broker_usr))
+      BROKER_PASSWORD: ((broker_pwd))
+      DEPOT_PATH: /home/vcap/tmp
