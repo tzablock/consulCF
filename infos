@@ -1,4 +1,124 @@
-    env:
-      BROKER_USERNAME: ((broker_usr))
-      BROKER_PASSWORD: ((broker_pwd))
-      DEPOT_PATH: /home/vcap/tmp
+"VCAP_SERVICES": {
+  "c-service": [
+   {
+    "binding_name": null,
+    "credentials": {
+     "consul_server_address": "10.26.224.171:8301"
+    },
+    "instance_name": "test_consul_service_1",
+    "label": "c-service",
+    "name": "test_consul_service_1",
+    "plan": "standard_plan",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [],
+    "volume_mounts": []
+   }
+  ],
+  "p.mysql": [
+   {
+    "binding_name": null,
+    "credentials": {
+     "hostname": "dec5c40f-63ca-4a5d-b835-c8429361f95e.mysql.service.internal",
+     "jdbcUrl": "jdbc:mysql://dec5c40f-63ca-4a5d-b835-c8429361f95e.mysql.service.internal:3306/service_instance_db?user=0261b69311b24297ab1aa6d464da6de4\u0026password=6mvmhf5f5b1metjm\u0026useSSL=false",
+     "name": "service_instance_db",
+     "password": "6mvmhf5f5b1metjm",
+     "port": 3306,
+     "uri": "mysql://0261b69311b24297ab1aa6d464da6de4:6mvmhf5f5b1metjm@dec5c40f-63ca-4a5d-b835-c8429361f95e.mysql.service.internal:3306/service_instance_db?reconnect=true",
+     "username": "0261b69311b24297ab1aa6d464da6de4"
+    },
+    "instance_name": "my-mysql",
+    "label": "p.mysql",
+    "name": "my-mysql",
+    "plan": "p-event-alerts",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "mysql"
+    ],
+    "volume_mounts": []
+   }
+  ],
+  "p.rabbitmq": [
+   {
+    "binding_name": null,
+    "credentials": {
+     "credhub-ref": "/c/4B1402E1-0781-4959-99D0-A9E4995BF0F7/b42fae75-6854-4be2-bbcc-9cfbf7b41d3e/72e86858-ddba-43b8-b902-2467f28564de/credentials"
+    },
+    "instance_name": "rabbitmq-test",
+    "label": "p.rabbitmq",
+    "name": "rabbitmq-test",
+    "plan": "single-node",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "rabbitmq"
+    ],
+    "volume_mounts": []
+   }
+  ],
+  "smb": [
+   {
+    "binding_name": null,
+    "credentials": {},
+    "instance_name": "smb-test",
+    "label": "smb",
+    "name": "smb-test",
+    "plan": "Existing",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "smb"
+    ],
+    "volume_mounts": [
+     {
+      "container_dir": "/mnt/sambashare",
+      "device_type": "shared",
+      "mode": "rw"
+     }
+    ]
+   },
+   {
+    "binding_name": null,
+    "credentials": {},
+    "instance_name": "smb-test2",
+    "label": "smb",
+    "name": "smb-test2",
+    "plan": "Existing",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "smb"
+    ],
+    "volume_mounts": [
+     {
+      "container_dir": "/mnt/sambashare2",
+      "device_type": "shared",
+      "mode": "rw"
+     }
+    ]
+   },
+   {
+    "binding_name": null,
+    "credentials": {},
+    "instance_name": "smb-test3",
+    "label": "smb",
+    "name": "smb-test3",
+    "plan": "Existing",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "smb"
+    ],
+    "volume_mounts": [
+     {
+      "container_dir": "/mnt/sambashare3",
+      "device_type": "shared",
+      "mode": "rw"
+     }
+    ]
+   }
+  ]
+ }
+ 
+ echo "$VCAP_SERVICES" | jq -r '.["c-service"] | .[0] | .credentials | .["consul_server_address"]'
